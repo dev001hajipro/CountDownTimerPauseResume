@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dev001hajipro.countdowntimerpauseresume.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/start"
+            android:onClick="@{()->viewModel.onStart()}"
+            app:layout_constraintEnd_toStartOf="@+id/stopButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop"
+            android:onClick="@{()->viewModel.onCancel()}"
+            app:layout_constraintBottom_toBottomOf="@+id/startButton"
+            app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/startButton"
+            app:layout_constraintTop_toTopOf="@+id/startButton" />
+
+        <Button
+            android:id="@+id/pauseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause"
+            android:onClick="@{()->viewModel.onPause()}"
+            app:layout_constraintBottom_toBottomOf="@+id/stopButton"
+            app:layout_constraintEnd_toStartOf="@+id/resumeButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/stopButton"
+            app:layout_constraintTop_toTopOf="@+id/stopButton" />
+
+        <Button
+            android:id="@+id/resumeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resume"
+            android:onClick="@{()->viewModel.onResume()}"
+            app:layout_constraintBottom_toBottomOf="@+id/pauseButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pauseButton"
+            app:layout_constraintTop_toTopOf="@+id/pauseButton" />
+
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:padding="16sp"
+            android:text="@{viewModel.timerText}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
